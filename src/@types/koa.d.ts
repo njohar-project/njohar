@@ -16,7 +16,7 @@ declare module 'koa' {
 
   interface GqlErrorData {
     data: {
-      [key: string]: any
+      [key: string]: Anything
     }
   }
 }

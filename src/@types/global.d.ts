@@ -1,12 +1,19 @@
 import { Locale } from 'antd/lib/locale-provider'
+import { GraphQLArgumentConfig, GraphQLFieldConfig } from 'graphql'
 import { Context, Middleware } from 'koa'
+import { IRouterContext } from 'koa-router'
 import { SingletonRouter } from 'next/router'
 import { Dispatch } from 'react-redux'
 import { UserDto } from '../views/dto/user/user'
-import { GraphQLFieldConfig, GraphQLArgumentConfig } from 'graphql'
-import { IRouterContext } from 'koa-router'
 
 declare global {
+
+  /**
+   * Typesafe to force any. Use it carefully!
+   */
+  // tslint:disable-next-line:no-any
+  type Anything = any
+
   interface DecodedJwtTokenInfo {
     exp: string | number
     user: UserDto
@@ -16,14 +23,14 @@ declare global {
 
   type ArgsOf<T> = { [argName in keyof T]: GraphQLArgumentConfig }
 
-  interface GqlFieldConfig<TArgs = any>
-    extends GraphQLFieldConfig<{}, IRouterContext, ArgsOf<TArgs> | any> {
+  interface GqlFieldConfig<TArgs = Anything>
+    extends GraphQLFieldConfig<{}, IRouterContext, ArgsOf<TArgs> | Anything> {
     args?: ArgsOf<TArgs>
   }
 
   interface GqlMap {
-    mutations: { [name: string]: GqlFieldConfig<any> }
-    queries: { [name: string]: GqlFieldConfig<any> }
+    mutations: { [name: string]: GqlFieldConfig<Anything> }
+    queries: { [name: string]: GqlFieldConfig<Anything> }
   }
 
   interface GqlError {
@@ -32,7 +39,7 @@ declare global {
 
   type ErrorMessage = Error | Error[] | GqlError
 
-  interface StoreProps<T = any> {
+  interface StoreProps<T = Anything> {
     dispatch: Dispatch<T>
   }
 
@@ -41,7 +48,7 @@ declare global {
       browser: boolean
     }
     interface Global {
-      fetch: any
+      fetch: Anything
     }
   }
 
