@@ -12,7 +12,7 @@ import { UserModel } from '../dataAccess'
 import { ValidationError } from '../lib/ValidationError'
 import { Repository } from '../repository'
 
-export class AuthService {
+export class UserService {
   ctx: Context
   users = new Repository(UserModel)
 

@@ -1,6 +1,6 @@
 import { GraphQLNonNull, GraphQLString } from 'graphql'
 import { LoginDto, RegisterDto } from '../../../views/dto/user/user'
-import { AuthService } from '../../services'
+import { UserService } from '../../services'
 import { AuthResultType } from './types'
 
 export const login: GqlFieldConfig<LoginDto> = {
@@ -10,7 +10,7 @@ export const login: GqlFieldConfig<LoginDto> = {
     password: { type: new GraphQLNonNull(GraphQLString) }
   },
   resolve: async (source, args, ctx) => {
-    return ctx.service(AuthService).login(args)
+    return ctx.service(UserService).login(args)
   }
 }
 
@@ -22,6 +22,6 @@ export const register: GqlFieldConfig<RegisterDto> = {
     password: { type: new GraphQLNonNull(GraphQLString) }
   },
   resolve: async (source, args, ctx) => {
-    return ctx.service(AuthService).register(args)
+    return ctx.service(UserService).register(args)
   }
 }

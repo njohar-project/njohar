@@ -1,6 +1,6 @@
 import { Middleware } from 'koa'
 import { JWT_KEY } from '../../lib/constants'
-import { AuthService } from '../services'
+import { UserService } from '../services'
 
 /**
  * Authenticate every request. It writes user's state as it's found.
@@ -8,7 +8,7 @@ import { AuthService } from '../services'
 export const authenticate: Middleware = async (ctx, next) => {
   // const token = ctx.request.headers[JWT_KEY] || ctx.cookies.get(JWT_KEY)
   const token = ctx.cookies.get(JWT_KEY)
-  const user = await ctx.service(AuthService).getUserFromToken(token)
+  const user = await ctx.service(UserService).getUserFromToken(token)
   ctx.setClientInitialState('user', user)
   await next()
 }

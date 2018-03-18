@@ -1,5 +1,5 @@
 import { JWT_KEY } from '../../lib/constants'
-import { AuthService } from '../services'
+import { UserService } from '../services'
 
 /**
  * Ensure that request is authenticated otherwise throws 401.
@@ -15,7 +15,7 @@ export const authenticated: AuthMiddleware = (/*role*/) => async (
     return
   }
 
-  if (!await ctx.service(AuthService).verifyToken(token)) {
+  if (!await ctx.service(UserService).verifyToken(token)) {
     ctx.throw(401, 'Unauthorized')
     return
   }
