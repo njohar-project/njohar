@@ -51,8 +51,8 @@ export class UserService {
   async login(request: LoginDto): Promise<AuthResultDto | boolean> {
     // ref: https://stackoverflow.com/a/33971033/1586914
     const user = await this.users.single({
-      'credentials.username': {
-        $regex: `^${request.username}$`,
+      'credentials.email': {
+        $regex: `^${request.email}$`,
         $options: 'i'
       },
       'credentials.password': hasha(request.password)
@@ -65,7 +65,7 @@ export class UserService {
         roles: user.roles
       }
 
-      const token = Auth.generateToken(request.username, userDto)
+      const token = Auth.generateToken(request.email, userDto)
       return {
         user: userDto,
         token

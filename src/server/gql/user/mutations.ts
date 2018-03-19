@@ -6,7 +6,7 @@ import { AuthResultType } from './types'
 export const login: GqlFieldConfig<LoginDto> = {
   type: AuthResultType,
   args: {
-    username: { type: new GraphQLNonNull(GraphQLString) },
+    email: { type: new GraphQLNonNull(GraphQLString) },
     password: { type: new GraphQLNonNull(GraphQLString) }
   },
   resolve: async (source, args, ctx) => {

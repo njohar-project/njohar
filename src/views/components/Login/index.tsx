@@ -25,9 +25,9 @@ class LoginCls extends React.Component<LoginProps> {
     form.validateFields(async (err, values) => {
       if (!err) {
         try {
-          const { username, password } = values
+          const { email, password } = values
           await login({
-            username,
+            email,
             password
           })
         } catch (err) {
@@ -42,17 +42,21 @@ class LoginCls extends React.Component<LoginProps> {
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
-          {getFieldDecorator('username', {
+          {getFieldDecorator('email', {
             rules: [
               {
                 required: true,
-                message: intl.formatMessage({ id: 'usernameIsRequired' })
+                message: intl.formatMessage({ id: 'emailIsRequired' })
+              },
+              {
+                message: 'Format Email Salah',
+                type: 'email'
               }
             ]
           })(
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder={intl.formatMessage({ id: 'usernamePlaceholder' })}
+              placeholder={intl.formatMessage({ id: 'emailPlaceholder' })}
             />
           )}
         </FormItem>

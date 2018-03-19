@@ -1,17 +1,17 @@
 const locales = {
   'en-US': {
     login: 'Login',
-    usernameIsRequired : 'Please input your username.',
+    emailIsRequired : 'Please input your email.',
     passwordIsRequired : 'Please input your password.',
-    usernamePlaceholder : 'Username',
+    emailPlaceholder : 'Email',
     passwordPlaceholder : 'Password',
     forget : 'Forgot password',
   },
   'id-ID': {
     login: 'Masuk',
-    usernameIsRequired : 'Silakan isi nama pengguna anda.',
+    emailIsRequired : 'Silakan isi surel anda.',
     passwordIsRequired : 'Silakan isi kata sandi anda.',
-    usernamePlaceholder : 'Nama Pengguna',
+    emailPlaceholder : 'Surel',
     passwordPlaceholder : 'Kata Sandi',
     forget : 'Lupa kata sandi',
   }
