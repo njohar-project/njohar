@@ -1,7 +1,7 @@
 export interface User {
   _id: string
   credentials: {
-    username: string
+    email: string
     password: string
   }
   name: string

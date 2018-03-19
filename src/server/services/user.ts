@@ -29,7 +29,7 @@ export class UserService {
     const user = await this.users.create({
       name: request.name,
       credentials: {
-        username: request.username,
+        email: request.email,
         password: hasha(request.password)
       },
       roles: request.roles
@@ -41,7 +41,7 @@ export class UserService {
       roles: user.roles
     }
 
-    const token = Auth.generateToken(request.username, userDto)
+    const token = Auth.generateToken(request.email, userDto)
     return {
       user: userDto,
       token
