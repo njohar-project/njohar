@@ -4,9 +4,9 @@ import * as mount from 'koa-mount'
 import * as serve from 'koa-static'
 import * as nextjs from 'next'
 import { resolve } from 'path'
-import { LANG_KEY } from '../lib/constants'
 import { DataAccess } from './dataAccess'
 import gql from './gql'
+import { translateMiddleware } from './locales'
 import { appSettings, authenticate, framework } from './middleware'
 
 const DEBUG_MODE: boolean = process.env.NODE_ENV === 'development'
@@ -26,6 +26,7 @@ app.prepare().then(async () => {
 
     .use(framework)
     .use(appSettings)
+    .use(translateMiddleware)
     .use(authenticate)
     .use(bodyParser())
     .use(gql.routes())

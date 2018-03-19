@@ -63,7 +63,7 @@ export class UserService {
       }
     }
 
-    throw new ValidationError('Invalid user name or password')
+    throw new ValidationError(this.ctx.translate('user:invalid-credential'))
   }
 
   async getUserFromToken(token: string): Promise<UserDto | null> {

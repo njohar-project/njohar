@@ -17,7 +17,7 @@ class LoginCls extends React.Component<LoginProps> {
           onClick={async () => {
             try {
               await login({
-                username: 'sponge',
+                username: 'sponge1',
                 password: 'bob'
               })
             } catch (err) {

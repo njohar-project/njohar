@@ -24,6 +24,7 @@
     "graphql": "^0.13.1",
     "graphql-tag": "^2.8.0",
     "hasha": "^3.0.0",
+    "intl-messageformat": "^2.2.0",
     "isomorphic-unfetch": "^2.0.0",
     "jsonwebtoken": "^8.2.0",
     "jwt-decode": "^2.2.0",

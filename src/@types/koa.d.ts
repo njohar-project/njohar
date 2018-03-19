@@ -1,4 +1,5 @@
 import * as Koa from 'koa'
+import { IntlMessages } from '../server/locales'
 import { InitialStateDto } from '../views/dto/initialState'
 
 declare module 'koa' {
@@ -8,6 +9,7 @@ declare module 'koa' {
     getClientInitialState(): InitialStateDto
     setClientInitialState<T>(key: keyof InitialStateDto, value: T)
     service<T>(ctor: { new (ctx: Koa.Context): T }): T
+    translate(key: keyof IntlMessages, values?: Anything): string
   }
 
   class GqlError {
