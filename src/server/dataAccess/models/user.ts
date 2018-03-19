@@ -9,8 +9,12 @@ export const UserModel = () =>
       type: SchemaTypes.String,
       default: shortid.generate
     },
-    name: SchemaTypes.String,
     credentials: {
-      type: SchemaTypes.Mixed
+      type: SchemaTypes.Mixed,
+      required: true
+    },
+    name: {
+      type: SchemaTypes.String,
+      required: true
     }
   })
