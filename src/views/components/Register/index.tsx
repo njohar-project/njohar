@@ -19,7 +19,8 @@ class RegisterCls extends React.Component<RegisterProps> {
               await register({
                 name: 'Sponge Bob',
                 username: 'sponge',
-                password: 'bob'
+                password: 'bob',
+                roles: ['customer']
               })
             } catch (err) {
               error(err)

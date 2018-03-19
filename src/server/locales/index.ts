@@ -4,6 +4,7 @@ import { LANG_KEY } from '../../lib/constants'
 
 export interface IntlMessages {
   'user:invalid-credential': string
+  'user:forbid-super-admin-registration': string
 }
 
 import en from './en'

@@ -5,6 +5,9 @@ import * as Router from 'koa-router'
 import product from './product'
 import user from './user'
 
+const DEBUG_MODE: boolean = process.env.NODE_ENV === 'development'
+const endpointURL = process.env.GQL_END_POINT as string
+
 const query = new GraphQLObjectType({
   name: 'Query',
   fields: () => ({
@@ -38,15 +41,16 @@ function formatError(err: any) {
     }
   }
 
+  if (DEBUG_MODE) {
+    return err
+  }
+
   return {
     message: 'Something went wrong!',
     code: (err.originalError && err.originalError.code) || 500,
     path: err.path
   }
 }
-
-const DEBUG_MODE: boolean = process.env.NODE_ENV === 'development'
-const endpointURL = process.env.GQL_END_POINT as string
 
 const router = new Router()
   .post(endpointURL, graphqlKoa(ctx => ({ schema, context: ctx, formatError })))

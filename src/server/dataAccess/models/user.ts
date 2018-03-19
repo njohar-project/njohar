@@ -16,5 +16,6 @@ export const UserModel = () =>
     name: {
       type: SchemaTypes.String,
       required: true
-    }
+    },
+    roles: [SchemaTypes.String]
   })

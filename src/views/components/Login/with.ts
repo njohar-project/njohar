@@ -13,6 +13,7 @@ const LOGIN_MUTATION = gql`
       user {
         id
         name
+        roles
       }
     }
   }

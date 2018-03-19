@@ -20,17 +20,25 @@ export class UserService {
   }
 
   async register(request: RegisterDto): Promise<AuthResultDto | undefined> {
+    if (request.roles.indexOf('sa') > -1) {
+      if ((await this.users.count()) > 0) {
+        throw new ValidationError(this.ctx.translate('user:forbid-super-admin-registration'))
+      }
+    }
+
     const user = await this.users.create({
       name: request.name,
       credentials: {
         username: request.username,
         password: hasha(request.password)
-      }
+      },
+      roles: request.roles
     })
 
     const userDto: UserDto = {
       id: user._id,
-      name: user.name
+      name: user.name,
+      roles: user.roles
     }
 
     const token = Auth.generateToken(request.username, userDto)
@@ -53,7 +61,8 @@ export class UserService {
     if (user) {
       const userDto: UserDto = {
         id: user._id,
-        name: user.name
+        name: user.name,
+        roles: user.roles
       }
 
       const token = Auth.generateToken(request.username, userDto)

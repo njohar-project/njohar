@@ -7,13 +7,14 @@ import { setError } from '../../store/common/actions'
 import { authorize } from '../../store/user/actions'
 
 const REGISTER_MUTATION = gql`
-  mutation($name: String!, $username: String!, $password: String!) {
-    userRegister(name: $name, username: $username, password: $password) {
+  mutation($name: String!, $username: String!, $password: String!, $roles: [String!]) {
+    userRegister(name: $name, username: $username, password: $password, roles: $roles) {
       token
       user {
         id
         name
-      }
+        roles
+      }      
     }
   }
 `
