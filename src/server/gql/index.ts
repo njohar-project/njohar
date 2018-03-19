@@ -2,6 +2,7 @@
 import { graphiqlKoa, graphqlKoa } from 'apollo-server-koa'
 import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 import * as Router from 'koa-router'
+import bank from './bank'
 import category from './category'
 import product from './product'
 import user from './user'
@@ -14,7 +15,8 @@ const query = new GraphQLObjectType({
   fields: () => ({
     ...user.queries,
     ...product.queries,
-    ...category.queries
+    ...category.queries,
+    ...bank.queries
   })
 })
 
@@ -23,7 +25,8 @@ const mutation = new GraphQLObjectType({
   fields: () => ({
     ...user.mutations,
     ...product.mutations,
-    ...category.mutations
+    ...category.mutations,
+    ...bank.mutations
   })
 })
 
