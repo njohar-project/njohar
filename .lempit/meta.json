@@ -1,0 +1,7 @@
+{
+	"maps": {
+    "services": "src/server/services",
+    "models": "src/server/dataAccess/models",
+    "domain": "src/server/domain"
+	}
+}

@@ -1,0 +1,13 @@
+import { SchemaTypes } from 'mongoose'
+import * as shortid from 'shortid'
+import { DataAccess } from '..'
+import { {{upperfirst domain}} } from '../../domain/{{camelcase domain}}'
+
+export const {{upperfirst domain}}Model = () =>
+  DataAccess.createSchema<{{upperfirst domain}}>('{{upperfirst domain}}', {
+    _id: {
+      type: SchemaTypes.String,
+      default: shortid.generate
+    },
+    // other members
+  })

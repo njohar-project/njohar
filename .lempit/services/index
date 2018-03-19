@@ -1,0 +1,12 @@
+import { Context } from 'koa'
+import { {{upperfirst model}}Model } from '../dataAccess'
+import { Repository } from '../repository'
+
+export class {{upperfirst model}}Service {
+  ctx: Context
+  {{camelcase model}}s = new Repository({{upperfirst model}}Model)
+
+  constructor(ctx: Context) {
+    this.ctx = ctx
+  }
+}
