@@ -7,8 +7,8 @@ import { setError } from '../../store/common/actions'
 import { authorize } from '../../store/user/actions'
 
 const LOGIN_MUTATION = gql`
-  mutation($username: String!, $password: String!) {
-    userLogin(username: $username, password: $password) {
+  mutation($email: String!, $password: String!) {
+    userLogin(email: $email, password: $password) {
       token
       user {
         id
