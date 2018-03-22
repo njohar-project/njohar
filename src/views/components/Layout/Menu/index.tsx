@@ -14,14 +14,6 @@ import { PageMenuActionProps, PageMenuProps, PageMenuStateProps } from './props'
 
 const MenuItem = Menu.Item
 const SubMenu = Menu.SubMenu
-
-const LoginComponent = (
-  <div>
-    <p>Login Component Here</p>
-    <Login />
-  </div>
-)
-
 const THEME = 'dark'
 
 class PageMenuCls extends React.PureComponent<PageMenuProps> {
@@ -93,7 +85,7 @@ class PageMenuCls extends React.PureComponent<PageMenuProps> {
             <Menu mode="horizontal" theme={THEME} selectable={false}>
               <MenuItem>
                 <Popover
-                  content={LoginComponent}
+                  content={<Login />}
                   placement="bottomRight"
                   trigger="click"
                   title="Login"
