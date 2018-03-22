@@ -1,12 +1,12 @@
 import Router from 'next/router'
 import * as React from 'react'
 import { PageLayout } from '../../components/Layout'
-import { Page } from '../_page'
+import { PageProps, wrap } from '../../lib/wrapper'
 
-export default class AdminPage extends Page {
-  componentDidMount() {
+class AdminPage extends React.Component<PageProps> {
+  async componentDidMount() {
     if (!this.props.userState.authenticated) {
-      Router.replace('/')
+      await Router.replace('/')
     }
   }
 
@@ -17,4 +17,7 @@ export default class AdminPage extends Page {
       </PageLayout>
     )
   }
+
 }
+
+export default wrap(AdminPage)

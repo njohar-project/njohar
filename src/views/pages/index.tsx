@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { PageLayout } from '../components/Layout'
-import { wrap } from '../lib/wrapper'
-import { Page } from './_page'
+import { PageProps, wrap } from '../lib/wrapper'
 
-class App extends Page {
+class App extends React.Component<PageProps> {
   render() {
     return (
       <PageLayout title="Home">

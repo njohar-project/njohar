@@ -5,9 +5,11 @@ import {
   MapStateToPropsParam,
   MergeProps
 } from 'react-redux'
-
 import withData from './withData'
+import { PageProps, withPage } from './withPage'
 import { withStore } from './withStore'
+
+export { PageProps }
 
 export function wrap<
   TStateProps = {},
@@ -23,7 +25,7 @@ export function wrap<
 ) {
   return withStore(
     // tslint:disable-next-line:no-any
-    withData(Component) as any,
+    (withData(withPage(Component))) as any,
     mapStateToProps,
     mapDispatchToProps,
     mergeProps,
