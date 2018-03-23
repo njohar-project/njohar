@@ -1,6 +1,6 @@
 import { ThunkAction } from 'redux-thunk'
 import { RootState } from '..'
-import { SET_ERROR, SET_LANG } from './reducers'
+import { SET_ERROR, SET_FRESH, SET_LANG } from './reducers'
 
 export function setError(
   error: ErrorMessage
@@ -15,5 +15,11 @@ export function changeLanguage(
 ): ThunkAction<void, RootState, null> {
   return dispatch => {
     dispatch({ type: SET_LANG, payload: language })
+  }
+}
+
+export function setFresh(fresh: boolean): ThunkAction<void, RootState, null> {
+  return dispatch => {    
+    dispatch({ type: SET_FRESH, payload: fresh })
   }
 }

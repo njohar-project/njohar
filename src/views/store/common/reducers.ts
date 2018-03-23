@@ -10,11 +10,13 @@ import en = require('antd/lib/locale-provider/en_US')
 
 export const SET_ERROR = 'SET_ERROR'
 export const SET_LANG = 'SET_LANG'
+export const SET_FRESH = 'SET_FRESH'
 
 const initialState: CommonState = {
   lang: 'en-US',
   // tslint:disable-next-line:no-any
-  locale: en as any
+  locale: en as any,
+  fresh: false
 }
 
 export const commonReducers: Reducer<{}> = (state = initialState, action) => {
@@ -49,6 +51,10 @@ export const commonReducers: Reducer<{}> = (state = initialState, action) => {
 
       CookieUtil.setCookie(LANG_KEY, lang, 365)
       return { ...state, lang, locale }
+
+    case SET_FRESH:
+      const fresh = action.payload
+      return { ...state, fresh }
 
     default:
       return state

@@ -5,7 +5,7 @@ import { PageProps, wrap } from '../lib/wrapper'
 class App extends React.Component<PageProps> {
   render() {
     return (
-      <PublicPageLayout title="Home">
+      <PublicPageLayout title="Home" {...this.props}>
         Hey!
       </PublicPageLayout>
     )

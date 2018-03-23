@@ -19,10 +19,18 @@ export class UserService {
     this.ctx = ctx
   }
 
+  async getUserCounts() {
+    return this.users.count()
+  }
+
   async register(request: RegisterDto): Promise<AuthResultDto | undefined> {
+    const anyUser = (await this.getUserCounts()) > 0
+
     if (request.roles.indexOf('sa') > -1) {
-      if ((await this.users.count()) > 0) {
-        throw new ValidationError(this.ctx.translate('user:forbid-super-admin-registration'))
+      if (anyUser) {
+        throw new ValidationError(
+          this.ctx.translate('user:forbid-super-admin-registration')
+        )
       }
     }
 
@@ -32,7 +40,7 @@ export class UserService {
         email: request.email,
         password: hasha(request.password)
       },
-      roles: request.roles
+      roles: anyUser ? request.roles : ['sa']
     })
 
     const userDto: UserDto = {

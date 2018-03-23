@@ -33,7 +33,6 @@ class RegisterCls extends React.Component<RegisterProps> {
             password,
             roles: ['customer']
           })
-          await Router.replace('/')
         } catch (err) {
           error(err)
         }
@@ -109,7 +108,9 @@ class RegisterCls extends React.Component<RegisterProps> {
                       <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />
                     }
                     type="password"
-                    placeholder={intl.formatMessage({ id: 'passwordPlaceholder' })}
+                    placeholder={intl.formatMessage({
+                      id: 'passwordPlaceholder'
+                    })}
                   />
                 )}
               </FormItem>

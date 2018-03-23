@@ -1,5 +1,5 @@
 export class CookieUtil {
-  static setCookie(name: string, value: string, expInDays: number) {
+  static setCookie(name: string, value: string, expInDays: number = 365) {
     if (typeof document === 'undefined') {
       return
     }
