@@ -1,15 +1,25 @@
 import ApolloClient from 'apollo-client'
+import { IncomingMessage, ServerResponse } from 'http'
 import Head from 'next/head'
 import * as React from 'react'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
-import { Dispatch } from 'react-redux'
-import { ServerProps } from '../pages/_page'
+import { Store } from 'react-redux'
 import { RootState } from '../store'
 import initApollo from './initApollo'
 
 // Gets the display name of a JSX component for dev tools
 function getComponentDisplayName(Component: React.ComponentClass) {
   return Component.displayName || Component.name || 'Unknown'
+}
+
+export interface ServerProps {
+  store: Store<RootState>
+  isServer: boolean
+  req?: IncomingMessage
+  res?: ServerResponse
+  query?: string
+  asPath?: string
+  pathname?: string
 }
 
 interface WithDataComponentType {

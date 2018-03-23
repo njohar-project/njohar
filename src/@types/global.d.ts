@@ -55,6 +55,10 @@ declare global {
   interface WithRouteProps {
     router: SingletonRouter
   }
+  
+  interface WithUrlProps {
+    url: SingletonRouter
+  }
 
   interface WithLocaleProps {
     lang?: string

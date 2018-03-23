@@ -28,7 +28,3 @@ export function withStore<
     options
   )(Component)
 }
-
-// (state: RootState) => ({
-//   user: state.users.user
-// })
