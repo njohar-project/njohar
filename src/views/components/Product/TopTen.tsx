@@ -1,7 +1,9 @@
+import { Avatar, Card, Col, Row } from 'antd'
 import gql from 'graphql-tag'
 import * as React from 'react'
 import { ChildProps, graphql, QueryProps } from 'react-apollo'
 import { ProductDto } from '../../dto/product/product'
+const { Meta } = Card
 
 const PRODUCT_TOP_TEN_QUERY = gql`
   query {
@@ -9,6 +11,9 @@ const PRODUCT_TOP_TEN_QUERY = gql`
       id
       name
       thumb
+      price
+      createdAt
+      updatedAt
     }
   }
 `
@@ -23,26 +28,20 @@ const withProductTopTen = graphql<Response, {}, Props>(PRODUCT_TOP_TEN_QUERY, {
   props: ({ data }) => ({ ...data })
 })
 
-function TopTen(props: Props) {
-  const { topTenProducts } = props
-  return (
-    <section>
-      <div>{topTenProducts && topTenProducts.map(p => <div key={p.id}>{p.name}</div>)}</div>
-    </section>
-  )
-  // if (topTenProducts && topTenProducts.length) {
-  //   return <div>{topTenProducts.map(p => <div key={p.id}>{p.name}</div>)}</div>
-  // }
-
-  // return <div>Kosong</div>
-}
-
 class ProductTopTenCls extends React.Component<Props> {
   render() {
     const { topTenProducts } = this.props
     if (topTenProducts && topTenProducts.length) {
       return (
-        <div>{topTenProducts.map(p => <div key={p.id}>{p.name}</div>)}</div>
+        <Row>
+          {topTenProducts.map(p => (
+            <Col md={3} style={{ padding: '10px' }}>
+              <Card cover={<img alt={p.name} src={p.thumb} />}>
+                <Meta title={p.name} description={p.price} />
+              </Card>
+            </Col>
+          ))}
+        </Row>
       )
     }
 
@@ -50,4 +49,4 @@ class ProductTopTenCls extends React.Component<Props> {
   }
 }
 
-export const ProductTopTen = withProductTopTen(TopTen)
+export const ProductTopTen = withProductTopTen(ProductTopTenCls)
