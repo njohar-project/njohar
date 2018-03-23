@@ -25,7 +25,7 @@ export function wrap<
 ) {
   return withStore(
     // tslint:disable-next-line:no-any
-    (withData(withPage(Component))) as any,
+    (withData(withPage(Component) as any)) as any,
     mapStateToProps,
     mapDispatchToProps,
     mergeProps,

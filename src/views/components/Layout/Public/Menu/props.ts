@@ -1,4 +1,4 @@
-import { UserDto } from '../../../dto/user/user'
+import { UserDto } from '../../../../dto/user/user'
 
 export interface PageMenuStateProps {
   authenticated?: boolean

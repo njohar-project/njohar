@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { AdminPageLayout } from '../../components/Layout'
-import { PageProps, wrap } from '../../lib/wrapper'
+import { AdminPageLayout } from '../../../components/Layout'
+import { PageProps, wrap } from '../../../lib/wrapper'
 
 class AdminPage extends React.Component<PageProps> {
   render() {
     return (
       <AdminPageLayout title="Admin Page" {...this.props}>
-        <h1>Admin</h1>
+        <h1>Admin Product</h1>
       </AdminPageLayout>
     )
   }

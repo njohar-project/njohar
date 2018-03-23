@@ -1,7 +1,6 @@
 import { Layout } from 'antd'
 import { withRouter } from 'next/router'
 import * as React from 'react'
-import { PageMenu } from './Menu/index'
 
 export const PageHeader = withRouter(props => {
   const { router, children } = props
@@ -12,7 +11,7 @@ export const PageHeader = withRouter(props => {
 
   return (
     <Layout.Header>
-      <PageMenu router={router} /> {children}
+      {children}
     </Layout.Header>
   )
 })

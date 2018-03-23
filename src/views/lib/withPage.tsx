@@ -1,5 +1,5 @@
 import * as jwtDecode from 'jwt-decode'
-import Router from 'next/router'
+import Router, { withRouter } from 'next/router'
 import * as NProgress from 'nprogress'
 import * as React from 'react'
 import { CookieUtil } from '.'
@@ -14,12 +14,14 @@ interface SpinState {
   ready: boolean
 }
 
-export interface PageProps {
+export interface PagePropsState {
   userState: {
     authenticated: boolean
     user: UserDto | null
   }
 }
+
+export type PageProps = PagePropsState & WithRouteProps
 
 Router.onRouteChangeStart = () => {
   NProgress.start()
@@ -38,11 +40,14 @@ export function withPage<TProps = Anything, TState = Anything>(
 ) {
   // type MergedState = TState & SpinState
 
-  return class extends React.Component<TProps, TState & SpinState> {
+  const Main = class extends React.Component<
+    TProps & WithRouteProps,
+    TState & SpinState
+  > {
     static async getInitialProps({
       req,
       store
-    }: ServerProps): Promise<PageProps> {
+    }: ServerProps): Promise<PagePropsState> {
       if (req) {
         // server side
         store.dispatch(setUser(req.serverState.user))
@@ -59,7 +64,7 @@ export function withPage<TProps = Anything, TState = Anything>(
       return getCachedProps()
     }
 
-    constructor(props: TProps) {
+    constructor(props: TProps & WithRouteProps) {
       super(props)
       // @ts-ignore
       this.state = {
@@ -79,9 +84,11 @@ export function withPage<TProps = Anything, TState = Anything>(
       return <Component {...this.props} />
     }
   }
+
+  return withRouter(Main)
 }
 
-function getCachedProps(): PageProps {
+function getCachedProps(): PagePropsState {
   // ensure token is valid
   const token = CookieUtil.getCookie(JWT_KEY)
   if (!token || token === '') {
@@ -97,8 +104,7 @@ function getCachedProps(): PageProps {
   const jwt = jwtDecode<DecodedJwtTokenInfo>(token)
   const authenticated = !!(
     jwt &&
-    jwt.exp &&
-    (jwt.exp === 'undefined' || jwt.exp >= Date.now().valueOf() / 1000)
+    (!jwt.exp || jwt.exp >= Date.now().valueOf() / 1000)
   )
 
   return {

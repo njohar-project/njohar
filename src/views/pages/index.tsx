@@ -1,13 +1,13 @@
 import * as React from 'react'
-import { PageLayout } from '../components/Layout'
+import { PublicPageLayout } from '../components/Layout'
 import { PageProps, wrap } from '../lib/wrapper'
 
 class App extends React.Component<PageProps> {
   render() {
     return (
-      <PageLayout title="Home">
+      <PublicPageLayout title="Home">
         Hey!
-      </PageLayout>
+      </PublicPageLayout>
     )
   }
 }
