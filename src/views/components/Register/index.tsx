@@ -1,5 +1,4 @@
 import { Button, Card, Col, Form, Icon, Input, Row } from 'antd'
-import Router from 'next/router'
 import * as React from 'react'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { withLang } from '../../lib/withLang'

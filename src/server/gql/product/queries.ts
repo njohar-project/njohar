@@ -4,7 +4,7 @@ import { ProductType } from './types'
 
 export const getTopTenProducts: GqlFieldConfig = {
   type: new GraphQLList(ProductType),
-  resolve: async (source, args, ctx) => {
+  resolve: async (_source, _args, ctx) => {
     return ctx.service(ProductService).topTenList()
   }
 }

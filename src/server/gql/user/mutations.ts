@@ -9,7 +9,7 @@ export const login: GqlFieldConfig<LoginDto> = {
     email: { type: new GraphQLNonNull(GraphQLString) },
     password: { type: new GraphQLNonNull(GraphQLString) }
   },
-  resolve: async (source, args, ctx) => {
+  resolve: async (_source, args, ctx) => {
     return ctx.service(UserService).login(args)
   }
 }
@@ -22,7 +22,7 @@ export const register: GqlFieldConfig<RegisterDto> = {
     password: { type: new GraphQLNonNull(GraphQLString) },
     roles: { type: new GraphQLList(GraphQLString) }
   },
-  resolve: async (source, args, ctx) => {
+  resolve: async (_source, args, ctx) => {
     return ctx.service(UserService).register(args)
   }
 }

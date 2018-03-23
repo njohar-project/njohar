@@ -10,7 +10,7 @@
     "build:server": "rm -rf dist && webpack --env.production --config build/webpack.config.js && node build/packager.js",
     "build:client": "rm -rf src/views/.next && cross-env NODE_ENV=production next build src/views",
     "build": "npm run build:server && npm run build:client && mv src/views/.next dist",
-    "lint": "tslint -c tslint.json 'src/**/*.ts*'"
+    "lint": "tslint -c tslint.json -p ./ -e '**/*.js'"
   },
   "dependencies": {
     "antd": "^3.2.3",

@@ -1,5 +1,5 @@
 import { Middleware } from 'koa'
-import { IS_FRESH, JWT_KEY } from '../../lib/constants'
+import { JWT_KEY } from '../../lib/constants'
 import { UserService } from '../services'
 
 /**

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { addLocaleData, IntlProvider, Locale } from 'react-intl'
+import { addLocaleData, IntlProvider } from 'react-intl'
 import { connect } from 'react-redux'
 import { RootState } from '../store'
 

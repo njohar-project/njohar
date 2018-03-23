@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js start
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js lint
 
 PATH: 
-  /home/aviantorich/bin:/home/aviantorich/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/aviantorich/.vimpkg/bin:/home/aviantorich/Android/Sdk/tools:/home/aviantorich/Android/Sdk/platform-tools:/home/aviantorich/shku
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\PAPE\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\PAPE\AppData\Local\Microsoft\WindowsApps;C:\Users\PAPE\AppData\Roaming\npm;C:\Users\PAPE\AppData\Local\Yarn\bin
 
 Yarn version: 
   1.5.1
@@ -11,7 +11,7 @@ Node version:
   8.10.0
 
 Platform: 
-  linux x64
+  win32 x64
 
 npm manifest: 
   {
@@ -26,7 +26,7 @@ npm manifest:
       "build:server": "rm -rf dist && webpack --env.production --config build/webpack.config.js && node build/packager.js",
       "build:client": "rm -rf src/views/.next && cross-env NODE_ENV=production next build src/views",
       "build": "npm run build:server && npm run build:client && mv src/views/.next dist",
-      "lint": "tslint -c tslint.json 'src/**/*.ts*'"
+      "lint": "tslint -c tslint.json -p ./ -e '**/*.js'"
     },
     "dependencies": {
       "antd": "^3.2.3",
@@ -7149,15 +7149,15 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit signal: SIGHUP
-  Command: sh
-  Arguments: -c cross-env NODE_ENV=development nodemon
-  Directory: /home/aviantorich/Projects/njohar
+  Exit code: 2
+  Command: C:\WINDOWS\system32\cmd.exe
+  Arguments: /d /s /c tslint -c tslint.json -p ./ -e '**/*.js'
+  Directory: D:\PROJECTS\OpenSource\njohar\njohar
   Output:
   
-      at ProcessTermError.MessageError (/usr/share/yarn/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/share/yarn/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/share/yarn/lib/cli.js:30281:17)
+      at ProcessTermError.MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
+      at new ProcessTermError (C:\Program Files (x86)\Yarn\lib\cli.js:226:113)
+      at ChildProcess.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:30281:17)
       at emitTwo (events.js:126:13)
       at ChildProcess.emit (events.js:214:7)
       at maybeClose (internal/child_process.js:925:16)

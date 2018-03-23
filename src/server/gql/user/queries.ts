@@ -2,7 +2,7 @@ import { UserType } from './types'
 
 export const getCurrent: GqlFieldConfig = {
   type: UserType,
-  resolve(source, args, ctx) {
+  resolve(_source, _args, ctx) {
     return ctx.getClientInitialState('user')
   }
 }

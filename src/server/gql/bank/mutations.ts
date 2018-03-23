@@ -7,7 +7,7 @@ export const addBank: GqlFieldConfig<CreateBankDto> = {
   args: {
     name: { type: new GraphQLNonNull(GraphQLString) }
   },
-  resolve: async (source, args, ctx) => {
+  resolve: async (_source, args, ctx) => {
     return ctx.service(BankService).add(args)
   }
 }

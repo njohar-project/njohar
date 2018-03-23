@@ -1,7 +1,7 @@
-import { Avatar, Card, Col, Row } from 'antd'
+import { Card, Col, Row } from 'antd'
 import gql from 'graphql-tag'
 import * as React from 'react'
-import { ChildProps, graphql, QueryProps } from 'react-apollo'
+import { graphql, QueryProps } from 'react-apollo'
 import { ProductDto } from '../../dto/product/product'
 const { Meta } = Card
 
@@ -35,7 +35,7 @@ class ProductTopTenCls extends React.Component<Props> {
       return (
         <Row>
           {topTenProducts.map(p => (
-            <Col md={3} style={{ padding: '10px' }}>
+            <Col key={p.id} md={3} style={{ padding: '10px' }}>
               <Card cover={<img alt={p.name} src={p.thumb} />}>
                 <Meta title={p.name} description={p.price} />
               </Card>

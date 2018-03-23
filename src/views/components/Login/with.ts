@@ -27,7 +27,7 @@ export const withLogin = compose(
         mutate &&
         mutate({
           variables: credential,
-          update: (proxy, result) => {
+          update: (_proxy, result) => {
             if (result.data) {
               const data: AuthResultDto = result.data.userLogin
               ownProps.dispatch(authorize(data))

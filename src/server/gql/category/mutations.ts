@@ -7,7 +7,7 @@ export const addCategory: GqlFieldConfig<CreateCategoryDto> = {
   args: {
     name: { type: new GraphQLNonNull(GraphQLString) }
   },
-  resolve: async (source, args, ctx) => {
+  resolve: async (_source, args, ctx) => {
     return ctx.service(CategoryService).add(args)
   }
 }
