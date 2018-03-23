@@ -6,7 +6,7 @@ import { wrap } from '../lib/wrapper'
 class ProductPage extends React.Component {
   render() {
     return (
-      <PageLayout title="Home">
+      <PageLayout title="Products">
         <ProductTopTen />
       </PageLayout>
     )

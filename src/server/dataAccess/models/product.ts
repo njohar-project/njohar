@@ -13,6 +13,7 @@ export const ProductModel = () =>
       },
       name: SchemaTypes.String,
       thumb: SchemaTypes.String,
+      price: SchemaTypes.Number,
       createdAt: SchemaTypes.Date,
       updatedAt: SchemaTypes.Date
     },
