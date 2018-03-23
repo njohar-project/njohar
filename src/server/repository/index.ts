@@ -27,6 +27,11 @@ export class Repository<T> {
     return this.model.count(conditions)
   }
 
+  // tslint:disable-next-line:no-any
+  async any(conditions?: any): Promise<boolean> {
+    return (await this.count(conditions)) > 0
+  }
+
   async list(
     // tslint:disable-next-line:no-any
     conditions?: any,

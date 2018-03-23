@@ -34,10 +34,23 @@ export class UserService {
       }
     }
 
+    if (
+      this.users.any({
+        'credentials.email': {
+          $regex: `^${request.email}$`,
+          $options: 'i'
+        }
+      })
+    ) {
+      throw new ValidationError(
+        this.ctx.translate('user:email-already-taken', { email: request.email })
+      )
+    }
+
     const user = await this.users.create({
       name: request.name,
       credentials: {
-        email: request.email,
+        email: request.email.toLocaleLowerCase().trim(),
         password: hasha(request.password)
       },
       roles: anyUser ? request.roles : ['sa']
