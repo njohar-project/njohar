@@ -1,4 +1,5 @@
 import gql from 'graphql-tag'
+import Router from 'next/router'
 import { compose, graphql } from 'react-apollo'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -20,18 +21,20 @@ const LOGIN_MUTATION = gql`
 `
 
 export const withLogin = compose(
-  connect(),  
-  graphql<{}, StoreProps>(LOGIN_MUTATION, {
+  connect(),
+  graphql<{ userLogin: AuthResultDto }, StoreProps>(LOGIN_MUTATION, {
     props: ({ mutate, ownProps }) => ({
       login: (credential: LoginDto) =>
         mutate &&
         mutate({
-          variables: credential,
-          update: (_proxy, result) => {
-            if (result.data) {
-              const data: AuthResultDto = result.data.userLogin
-              ownProps.dispatch(authorize(data))
-            }
+          variables: credential
+        }).then(result => {
+          const { userLogin } = result.data
+          ownProps.dispatch(authorize(userLogin))
+          if (userLogin.user.roles.indexOf('sa') > -1) {
+            Router.replace('/admin')
+          } else {
+            Router.replace('/')
           }
         }),
 
