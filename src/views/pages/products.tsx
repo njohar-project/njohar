@@ -6,7 +6,7 @@ import { PageProps, wrap } from '../lib/wrapper'
 class ProductPage extends React.Component<PageProps> {
   render() {
     return (
-      <PublicPageLayout title="Home" {...this.props}>
+      <PublicPageLayout title="Products" {...this.props}>
         <ProductTopTen />
       </PublicPageLayout>
     )
