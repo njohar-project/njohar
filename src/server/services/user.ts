@@ -35,7 +35,7 @@ export class UserService {
     }
 
     if (
-      this.users.any({
+      await this.users.any({
         'credentials.email': {
           $regex: `^${request.email}$`,
           $options: 'i'
