@@ -8,7 +8,7 @@ import { CategoryListProps, CategoryListResponse } from './props'
 export const CATEGORY_QUERY = gql`
   query {
     categories {
-      _id
+      id
       name
     }
   }

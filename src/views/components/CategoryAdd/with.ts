@@ -10,7 +10,7 @@ import { CreateCategoryDto } from './../../dto/product/category'
 const CATEGORY_MUTATION = gql`
   mutation($name: String!) {
     addCategory(name: $name) {
-      _id
+      id
       name
     }
   }
