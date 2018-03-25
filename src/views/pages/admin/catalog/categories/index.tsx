@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { CategoryList } from '../../../../components/CategoryList'
 import { AdminPageLayout } from '../../../../components/Layout'
 import { withLang } from '../../../../lib/withLang'
 import { PageProps, wrap } from '../../../../lib/wrapper'
@@ -10,7 +11,7 @@ class AdminPage extends React.Component<PageProps & WithLangProps> {
         title={this.props.intl.formatMessage({ id: 'title' })}
         {...this.props}
       >
-        <h1>Admin Category Product</h1>
+        <CategoryList />
       </AdminPageLayout>
     )
   }

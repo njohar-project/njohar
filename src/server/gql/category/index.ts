@@ -1,9 +1,15 @@
-import { addCategory } from './mutations';
+import { addCategory, deleteCategory, editCategory } from './mutations'
+import { category } from './queries'
+
 const map: GqlMap = {
   mutations: {
-      addCategory
+    addCategory,
+    editCategory,
+    deleteCategory
   },
-  queries: {}
+  queries: {
+    categories: category
+  }
 }
 
 export default map

@@ -11,10 +11,10 @@ export function withLang<T>(
   // tslint:disable-next-line:no-any
   messages: any
 ) {
-  return (WrappedComponent: React.ComponentClass<T & WithLangProps>) => {
+  return (WrappedComponent: React.ComponentClass<Anything>) => {
     const InjectedComponent = injectIntl(WrappedComponent)
 
-    class WithLang extends React.Component<T & WithLangProps> {
+    class WithLang extends React.Component<Anything> {
       render() {
         addLocaleData([...en, ...id])
         const { lang } = this.props
@@ -26,7 +26,7 @@ export function withLang<T>(
       }
     }
 
-    return connect<{}, {}, WithLangProps>((state: RootState) => ({
+    return connect<{}, {}, T, RootState>(state => ({
       lang: state.common.lang
     }))(WithLang)
   }

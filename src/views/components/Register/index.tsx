@@ -12,12 +12,6 @@ class RegisterCls extends React.Component<RegisterProps> {
   constructor(props: RegisterProps) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.state = {
-      busy: false,
-      error: undefined,
-      found: false,
-      result: undefined
-    }
   }
   handleSubmit(e: React.FormEvent<{}>) {
     e.preventDefault()
@@ -44,12 +38,10 @@ class RegisterCls extends React.Component<RegisterProps> {
     return (
       <Row>
         <Col
-          span={12}
-          xs={4}
-          sm={6}
-          md={8}
-          lg={12}
-          offset={6}
+          xs={{ span: 24 }}
+          sm={{ span: 24 }}
+          md={{ span: 12, offset: 6 }}
+          lg={{ span: 12, offset: 6 }}
           style={{ paddingTop: 100 }}
         >
           <Card

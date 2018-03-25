@@ -11,6 +11,23 @@ export class Repository<T> {
     return this.model.create(data)
   }
 
+  async edit(id: string, data: Partial<T>): Promise<T> {
+    const dataToEdit = await this.model.findById(id)
+    if (!dataToEdit) {
+      throw new Error('Data not found')
+    }
+    Object.assign(dataToEdit, data)
+    return dataToEdit.save()
+  }
+
+  async delete(id: string): Promise<T> {
+    const dataToDelete = await this.model.findById(id)
+    if (!dataToDelete) {
+      throw new Error('Data not found')
+    }
+    return dataToDelete.remove()
+  }
+
   query(
     // tslint:disable-next-line:no-any
     conditions?: any,
