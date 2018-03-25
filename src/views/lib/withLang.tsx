@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { addLocaleData, IntlProvider } from 'react-intl'
+import { addLocaleData, injectIntl, IntlProvider } from 'react-intl'
 import { connect } from 'react-redux'
 import { RootState } from '../store'
 
@@ -12,19 +12,21 @@ export function withLang<T>(
   messages: any
 ) {
   return (WrappedComponent: React.ComponentClass<T & WithLangProps>) => {
+    const InjectedComponent = injectIntl(WrappedComponent)
+
     class WithLang extends React.Component<T & WithLangProps> {
       render() {
         addLocaleData([...en, ...id])
         const { lang } = this.props
         return (
           <IntlProvider locale={lang} messages={messages[lang]}>
-            <WrappedComponent {...this.props} />
+            <InjectedComponent {...this.props} />
           </IntlProvider>
         )
       }
     }
 
-    return connect<WithLangProps>((state: RootState) => ({
+    return connect<{}, {}, WithLangProps>((state: RootState) => ({
       lang: state.common.lang
     }))(WithLang)
   }

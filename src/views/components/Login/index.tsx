@@ -1,6 +1,6 @@
 import { Button, Form, Icon, Input } from 'antd'
 import * as React from 'react'
-import { FormattedMessage, injectIntl } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import { withLang } from '../../lib/withLang'
 import messages from './locales'
 import { LoginProps } from './props'
@@ -76,17 +76,17 @@ class LoginCls extends React.Component<LoginProps> {
             />
           )}
         </FormItem>
-        <FormItem>          
+        <FormItem>
           <a className="login-form-forgot" href="">
-          <FormattedMessage id="forget" />
+            <FormattedMessage id="forget" />
           </a>
           <br />
-          <style jsx="true">{`.submit { width:100%}`}</style>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="submit"
-          >
+          <style jsx="true">{`
+            .submit {
+              width: 100%;
+            }
+          `}</style>
+          <Button type="primary" htmlType="submit" className="submit">
             <FormattedMessage id="login" />
           </Button>
         </FormItem>
@@ -96,5 +96,5 @@ class LoginCls extends React.Component<LoginProps> {
 }
 
 export const Login = withLang(messages)(
-  withLogin(Form.create<LoginProps>()(injectIntl(LoginCls)))
+  withLogin(Form.create<LoginProps>()(LoginCls))
 )

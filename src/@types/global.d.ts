@@ -3,11 +3,11 @@ import { GraphQLArgumentConfig, GraphQLFieldConfig } from 'graphql'
 import { Context, Middleware } from 'koa'
 import { IRouterContext } from 'koa-router'
 import { SingletonRouter } from 'next/router'
+import { InjectedIntlProps } from 'react-intl'
 import { Dispatch } from 'react-redux'
 import { UserDto } from '../views/dto/user/user'
 
 declare global {
-
   /**
    * Typesafe to force any. Use it carefully!
    */
@@ -55,7 +55,7 @@ declare global {
   interface WithRouteProps {
     router: SingletonRouter
   }
-  
+
   interface WithUrlProps {
     url: SingletonRouter
   }
@@ -65,7 +65,7 @@ declare global {
     locale?: Locale
   }
 
-  interface WithLangProps {
+  interface WithLangProps extends InjectedIntlProps {
     lang: string
   }
 

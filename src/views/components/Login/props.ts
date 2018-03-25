@@ -1,5 +1,5 @@
 import { FormComponentProps } from 'antd/lib/form'
-import { InjectedIntlProps } from 'react-intl'
+
 import { AuthResultDto, LoginDto } from '../../dto/user/user'
 
 export interface MutationProps {
@@ -7,7 +7,4 @@ export interface MutationProps {
   error(error: ErrorMessage): void
 }
 
-export type LoginProps = MutationProps &
-  WithLangProps &
-  FormComponentProps &
-  InjectedIntlProps
+export type LoginProps = MutationProps & WithLangProps & FormComponentProps
