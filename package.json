@@ -68,6 +68,7 @@
     "@zeit/next-css": "^0.1.4",
     "@zeit/next-less": "^0.1.1",
     "@zeit/next-typescript": "^0.0.10",
+    "babel-plugin-import": "^1.6.7",
     "cross-env": "^5.1.4",
     "less": "2.7.2",
     "nodemon": "^1.17.1",
