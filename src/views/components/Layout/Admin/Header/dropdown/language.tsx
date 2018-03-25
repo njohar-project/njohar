@@ -26,7 +26,7 @@ export class LanguageDropdown extends React.PureComponent<
     return (
       <Dropdown overlay={content}>
         <a className="ant-dropdown-link">
-          <Icon type="" className="icon-language" />
+          <Icon type="njohar" className="icon-language" />
         </a>
       </Dropdown>
     )

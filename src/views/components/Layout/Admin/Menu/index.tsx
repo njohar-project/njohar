@@ -33,24 +33,24 @@ class AdminMenuCls extends React.PureComponent<AdminMenuProps> {
           >
 
             <MenuItem key="/admin">
-              <Icon type="" className="icon-dashboard" />
+              <Icon type="njohar" className="icon-dashboard" />
               <FormattedMessage id="home" />
             </MenuItem>
 
             <SubMenu
               title={
                 <span>
-                  <Icon type="" className="icon-i-catalog" />
+                  <Icon type="njohar" className="icon-i-catalog" />
                   <FormattedMessage id="catalog" />
                 </span>
               }
             >
               <MenuItem key="/admin/catalog/categories">
-                <Icon type="" className="icon-category" />
+                <Icon type="njohar" className="icon-category" />
                 <FormattedMessage id="categories" />
               </MenuItem>
               <MenuItem key="/admin/catalog/products">
-                <Icon type="" className="icon-box" />
+                <Icon type="njohar" className="icon-box" />
                 <FormattedMessage id="products" />
               </MenuItem>
             </SubMenu>
@@ -58,28 +58,28 @@ class AdminMenuCls extends React.PureComponent<AdminMenuProps> {
             <SubMenu
               title={
                 <span>
-                  <Icon type="" className="icon-jiesuanqingdan" />
+                  <Icon type="njohar" className="icon-jiesuanqingdan" />
                   <FormattedMessage id="transactions" />
                 </span>
               }
             >
               <MenuItem key="/admin/transactions">
-                <Icon type="" className="icon-cart" />
+                <Icon type="njohar" className="icon-cart" />
                 <FormattedMessage id="transactions" />
               </MenuItem>
               <MenuItem key="/admin/reports">
-                <Icon type="" className="icon-report" />
+                <Icon type="njohar" className="icon-report" />
                 <FormattedMessage id="reports" />
               </MenuItem>
             </SubMenu>
 
             <MenuItem key="/admin/customers">
-              <Icon type="" className="icon-customer" />
+              <Icon type="njohar" className="icon-customer" />
               <FormattedMessage id="customers" />
             </MenuItem>
 
             <MenuItem key="/admin/settings">
-              <Icon type="" className="icon-setting" />
+              <Icon type="njohar" className="icon-setting" />
               <FormattedMessage id="settings" />
             </MenuItem>
 

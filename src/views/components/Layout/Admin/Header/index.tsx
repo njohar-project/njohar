@@ -42,7 +42,7 @@ class AdminHeaderCls extends React.PureComponent<AdminHeaderProps> {
             className={
               'trigger icon-' + (sidebarCollapsed ? 'menu-unfold' : 'menu-fold')
             }
-            type=""
+            type="njohar"
             onClick={this.props.onCollapse}
             style={{ float: 'left' }}
           />

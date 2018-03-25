@@ -35,11 +35,11 @@ export class ProfileDropdown extends React.PureComponent<ProfileDropdownProps> {
         onClick={({ key }) => menuHandler(key)}
       >
         <MenuItem>
-          <Icon type="" className="icon-account" />
+          <Icon type="njohar" className="icon-account" />
           <strong>{user.name}</strong>
         </MenuItem>
         <MenuItem key="logout">
-          <Icon type="" className="icon-logout" />
+          <Icon type="njohar" className="icon-logout" />
           <FormattedMessage id="logout" />
         </MenuItem>
       </Menu>
