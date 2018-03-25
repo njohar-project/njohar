@@ -12,12 +12,6 @@ class LoginCls extends React.Component<LoginProps> {
   constructor(props: LoginProps) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.state = {
-      busy: false,
-      error: undefined,
-      found: false,
-      result: undefined
-    }
   }
   handleSubmit(e: React.FormEvent<{}>) {
     e.preventDefault()

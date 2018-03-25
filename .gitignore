@@ -3,3 +3,4 @@ npm-debug.log
 dist
 .next
 src/views/.next
+.DS_Store
