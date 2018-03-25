@@ -4,4 +4,5 @@ export interface CommonState {
   lang: string
   locale: Locale
   fresh: boolean
+  adminSidebarCollapsed: boolean
 }

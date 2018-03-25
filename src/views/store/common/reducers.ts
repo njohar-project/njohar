@@ -11,12 +11,14 @@ import en = require('antd/lib/locale-provider/en_US')
 export const SET_ERROR = 'SET_ERROR'
 export const SET_LANG = 'SET_LANG'
 export const SET_FRESH = 'SET_FRESH'
+export const SET_ADMIN_SIDEBAR_COLLAPSED = 'SET_ADMIN_SIDEBAR_COLLAPSED'
 
 const initialState: CommonState = {
   lang: 'en-US',
   // tslint:disable-next-line:no-any
   locale: en as any,
-  fresh: false
+  fresh: false,
+  adminSidebarCollapsed: false
 }
 
 export const commonReducers: Reducer<{}> = (state = initialState, action) => {
@@ -55,6 +57,10 @@ export const commonReducers: Reducer<{}> = (state = initialState, action) => {
     case SET_FRESH:
       const fresh = action.payload
       return { ...state, fresh }
+
+    case SET_ADMIN_SIDEBAR_COLLAPSED:
+      const adminSidebarCollapsed = action.payload
+      return { ...state, adminSidebarCollapsed }
 
     default:
       return state

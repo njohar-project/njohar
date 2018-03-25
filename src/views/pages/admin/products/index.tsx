@@ -5,7 +5,7 @@ import { PageProps, wrap } from '../../../lib/wrapper'
 class AdminPage extends React.Component<PageProps> {
   render() {
     return (
-      <AdminPageLayout title="Admin Page" {...this.props}>
+      <AdminPageLayout title="Products" {...this.props}>
         <h1>Admin Product</h1>
       </AdminPageLayout>
     )

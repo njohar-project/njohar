@@ -31,7 +31,7 @@ class PageMenuCls extends React.PureComponent<PageMenuProps> {
           mode="horizontal"
           theme={THEME}
           style={{ float: 'left' }}
-          selectable={false}
+          selectable={false}          
         >
           <SubMenu title={<FormattedMessage id="language" />}>
             <MenuItem>

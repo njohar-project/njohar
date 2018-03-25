@@ -1,5 +1,4 @@
-import { Menu } from 'antd'
-import Link from 'next/link'
+import { Col, Icon, Menu, Row } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { withLang } from '../../../../lib/withLang'
@@ -10,47 +9,42 @@ const MenuItem = Menu.Item
 const THEME = 'dark'
 
 class AdminMenuCls extends React.PureComponent<AdminMenuProps> {
-  render() {
-    // tslint:disable-next-line:no-shadowed-variable
-    const { router } = this.props
+  nav(key: string) {
+    this.props.router.push(key)
+  }
 
+  render() {
     return (
-      <div>
-        <style jsx="true">{`
-          .ant-menu {
-            line-height: 64px;
-          }
-        `}</style>
-        <Menu
-          mode="vertical-left"
-          theme={THEME}
-          style={{ float: 'left' }}
-          selectable={false}
-        >
-          <MenuItem
-            key="home"
-            className={router.pathname === '/admin' ? 'ant-menu-item-selected' : ''}
-          >
-            <Link prefetch href="/admin">
-              <a>
-                <FormattedMessage id="home" />
-              </a>
-            </Link>
-          </MenuItem>
-          <MenuItem
-            key="products"
-            className={
-              router.pathname === '/admin/products' ? 'ant-menu-item-selected' : ''
+      <Row>
+        <Col>
+          <style jsx="true">{`
+            .ant-menu {
+              line-height: 64px;
             }
+          `}</style>
+          <Menu
+            mode="inline"
+            theme={THEME}
+            onSelect={({ key }) => {
+              this.nav(key)
+            }}
+            defaultSelectedKeys={[this.props.router.pathname]}
           >
-            <Link prefetch href="/admin/products">
-              <a>
+            <MenuItem key="/admin">
+              <Icon type="" className="icon-home" />
+              <span>
+                <FormattedMessage id="home" />
+              </span>
+            </MenuItem>
+            <MenuItem key="/admin/products">
+              <Icon type="" className="icon-box" />
+              <span>
                 <FormattedMessage id="products" />
-              </a>
-            </Link>
-          </MenuItem>
-        </Menu>
-      </div>
+              </span>
+            </MenuItem>
+          </Menu>
+        </Col>
+      </Row>
     )
   }
 }

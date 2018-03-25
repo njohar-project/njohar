@@ -1,88 +1,81 @@
-import { Menu } from 'antd'
-import Link from 'next/link'
+// tslint:disable:no-shadowed-variable
+import { Breadcrumb, Col, Icon, Row } from 'antd'
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withLang } from '../../../../lib/withLang'
 import { RootState } from '../../../../store'
 import { changeLanguage } from '../../../../store/common/actions'
 import { logout } from '../../../../store/user/actions'
+import { LanguageDropdown } from './dropdown/language'
+import { ProfileDropdown } from './dropdown/profile'
 import messages from './locales'
-import { AdminHeaderActionProps, AdminHeaderProps, AdminHeaderStateProps } from './props'
+import {
+  AdminHeaderActionProps,
+  AdminHeaderOwnProps,
+  AdminHeaderProps,
+  AdminHeaderStateProps
+} from './props'
 
-const MenuItem = Menu.Item
-const SubMenu = Menu.SubMenu
-const THEME = 'dark'
+import './style.less'
 
 class AdminHeaderCls extends React.PureComponent<AdminHeaderProps> {
   render() {
-    // tslint:disable-next-line:no-shadowed-variable
-    const { router, user, logout, changeLanguage } = this.props
+    const {
+      sidebarCollapsed,
+      user,
+      logout,
+      router,
+      changeLanguage
+    } = this.props
 
     if (!user) {
-      return null;
+      return null
     }
 
+    const menuSize = sidebarCollapsed ? 16 : 0
+
     return (
-      <div>
-        <style jsx="true">{`
-          .ant-menu {
-            line-height: 64px;
-          }
-        `}</style>
-        <Menu
-          mode="horizontal"
-          theme={THEME}
-          style={{ float: 'left' }}
-          selectable={false}
-        >
-          <SubMenu title={<FormattedMessage id="language" />}>
-            <MenuItem>
-              <a onClick={() => changeLanguage('en-US')}> English</a>
-            </MenuItem>
-            <MenuItem>
-              <a onClick={() => changeLanguage('id-ID')}>Bahasa Indonesia</a>
-            </MenuItem>
-          </SubMenu>
-          <MenuItem
-            key="home"
-            className={router.pathname === '/admin' ? 'ant-menu-item-selected' : ''}
-          >
-            <Link prefetch href="/admin">
-              <a>
-                <FormattedMessage id="home" />
-              </a>
-            </Link>
-          </MenuItem>
-        </Menu>
-        <div style={{ float: 'right' }}>
-          <Menu mode="horizontal" theme={THEME} selectable={false}>
-            <MenuItem>
-              <strong>{user.name}</strong>
-            </MenuItem>
-            <MenuItem>
-              <a
-                onClick={() => {
-                  logout()
-                  router.replace('/')
-                }}
-              >
-                <FormattedMessage id="logout" />
-              </a>
-            </MenuItem>
-          </Menu>
-        </div>
-      </div>
+      <Row className="admin-header">
+        <Col xs={8} sm={8} md={2} lg={2} xl={2} xxl={2}>
+          <Icon
+            className={
+              'trigger icon-' + (sidebarCollapsed ? 'menu-unfold' : 'menu-fold')
+            }
+            type=""
+            onClick={this.props.onCollapse}
+            style={{ float: 'left' }}
+          />
+        </Col>
+        <Col xs={menuSize} sm={menuSize} md={22} lg={22} xl={22} xxl={22}>
+          <div style={{ float: 'right' }}>
+            <Breadcrumb className="breadcrumb" separator="&nbsp;&nbsp;&nbsp;">
+              <Breadcrumb.Item>
+                <LanguageDropdown onChangeLanguage={changeLanguage} />
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <ProfileDropdown
+                  user={user}
+                  onLogout={() => {
+                    logout()
+                    router.replace('/')
+                  }}
+                />
+              </Breadcrumb.Item>
+            </Breadcrumb>
+          </div>
+        </Col>
+      </Row>
     )
   }
 }
 
-export const AdminHeader = withLang<WithRouteProps>(messages)(
-  connect<AdminHeaderStateProps, AdminHeaderActionProps>(
+export const AdminHeader = withLang<AdminHeaderOwnProps>(messages)(
+  connect<AdminHeaderStateProps, AdminHeaderActionProps, AdminHeaderOwnProps>(
     (state: RootState) => ({
       user: state.users.user,
-      authenticated: state.users.authenticated
+      authenticated: state.users.authenticated,
+      sidebarCollapsed: state.common.adminSidebarCollapsed
     }),
     dispatch => ({
       logout: bindActionCreators(logout, dispatch),
