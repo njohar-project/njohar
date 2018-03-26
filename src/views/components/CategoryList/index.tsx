@@ -1,12 +1,16 @@
-import { Button, Divider, Table } from 'antd'
+import { Button, Col, Icon, Layout, Row, Table } from 'antd'
 import * as React from 'react'
+import { FormattedMessage } from 'react-intl'
 import { CategoryDto } from '../../dto/product/category'
+import { withLang } from '../../lib/withLang'
 import { CategoryAdd, CategoryAddCls } from '../CategoryAdd'
+import messages from './locales'
 import { CategoryListProps } from './props'
 import { withCategoryList } from './with'
 
 interface State {
   visible: boolean
+  selectedRowKeys: string[]
 }
 
 class CategoryCls extends React.Component<CategoryListProps, State> {
@@ -20,24 +24,28 @@ class CategoryCls extends React.Component<CategoryListProps, State> {
     },
     {
       title: 'Action',
-      dataIndex: '_id',
-      key: '_id',
-      render: (_id: string, category: CategoryDto) => (
-        <span>
+      width: 150,
+      align: 'right',
+      render: (category: CategoryDto) => (
+        <Button.Group>
           <Button
             type="primary"
-            onClick={() => this.props.setSelectedCategory(category)}
+            onClick={() => {
+              this.props.setSelectedCategory(category)
+            }}
           >
-            Edit
+            <Icon type="edit" />
           </Button>
-          <Divider type="vertical" />
-        </span>
+          <Button type="danger" onClick={this.showModal}>
+            <Icon type="delete" />
+          </Button>
+        </Button.Group>
       )
     }
   ]
   constructor(props: CategoryListProps) {
     super(props)
-    this.state = { visible: false }
+    this.state = { visible: false, selectedRowKeys: [] }
   }
 
   showModal = () => {
@@ -48,28 +56,63 @@ class CategoryCls extends React.Component<CategoryListProps, State> {
 
   render() {
     const { categories } = this.props
+    const { selectedRowKeys } = this.state
 
     return (
-      <div>
-        <Button type="primary" onClick={this.showModal}>
-          Add Category
-        </Button>
-        {categories && categories.length ? (
-          <Table columns={this.columns} dataSource={categories} />
-        ) : (
-          <div>Kosong</div>
-        )}
-        <CategoryAdd
-          modalVisible={this.state.visible}
-          onModalHide={() => {
-            this.setState({
-              visible: false
-            })
-          }}
-        />
-      </div>
+      <Layout className="inner-container">
+        <Layout.Header className="header">
+          <Row>
+            <Col xs={4}>
+              <h1>
+                <FormattedMessage id="category" />
+              </h1>
+            </Col>
+            <Col xs={20}>
+              <div style={{ float: 'right' }}>
+                <Button.Group>
+                  <Button type="primary" onClick={this.showModal}>
+                    <Icon type="plus" />
+                  </Button>
+                  <Button type="danger">
+                    <Icon type="delete" />
+                  </Button>
+                  <Button>
+                    <Icon type="reload" />
+                  </Button>
+                </Button.Group>
+              </div>
+            </Col>
+          </Row>
+        </Layout.Header>
+        <Layout.Content>
+          {categories && categories.length ? (
+            <Table
+              className="responsive"
+              rowKey="id"
+              rowSelection={{
+                selectedRowKeys,
+                onChange: (keys: string[]) => {
+                  this.setState({ selectedRowKeys: keys })
+                }
+              }}
+              columns={this.columns}
+              dataSource={categories}
+            />
+          ) : (
+            <div>Kosong</div>
+          )}
+          <CategoryAdd
+            modalVisible={this.state.visible}
+            onModalHide={() => {
+              this.setState({
+                visible: false
+              })
+            }}
+          />
+        </Layout.Content>
+      </Layout>
     )
   }
 }
 
-export const CategoryList = withCategoryList(CategoryCls)
+export const CategoryList = withCategoryList(withLang(messages)(CategoryCls))
